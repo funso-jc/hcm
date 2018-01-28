@@ -199,11 +199,12 @@ if ($accion == 'Ver') {
 if ($accion == "Editar") {	// muestra datos para prestamo
 	$elstatus=$_SESSION['elstatus'];
 	echo '<fieldset><legend>Información para Registro </legend>';
-	echo '<td>Seleccione Tipo</td>';
+	echo '<td>Seleccione Institucion</td>';
    	echo '<td class="rojo">';
 	echo "<input type = 'hidden' value ='".$cedula."' name='cedula'>";
 	echo '<select name="farmacia" size="1">';
-	$sql="select * from instituto where tipo=4 or tipo=2 and status=1 order by instituto";
+//	$sql="select * from instituto where tipo=2 and status=1 order by instituto";
+	$sql="select * from instituto where status=1 order by instituto";
 	$resultado=mysql_query($sql);
 	while ($fila2 = mysql_fetch_assoc($resultado)) {
 		echo '<option value="'.$fila2['codmed'].'">'.$fila2['codmed'].' - '.$fila2['instituto'].'</option>'; }
@@ -227,8 +228,8 @@ if ($accion == "Editar") {	// muestra datos para prestamo
 	echo '<input type="textbox" maxlength="30" size="30" id="inputString" name="inputString" value="';
 	if ($saldo <= 0) echo '" disabled=true ';
 		else echo '" disabled=true ';
-	echo "onKeyUp='lookup(this.value);' onBlur='fill();' autocomplete='off' ><br>";
-
+	echo "onKeyUp='lookup(this.value);' onBlur='fill();' ><br>";
+//autocomplete='off' 
 	echo '<div class="suggestionsBox" id="suggestions" style="display: none;">';
 	echo '<img src="upArrow.png" style="position: relative; top: -12px; left: 70px; "  alt="upArrow" />';
 	echo '<div class="suggestionList" id="autoSuggestionsList">';

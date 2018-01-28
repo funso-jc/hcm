@@ -191,16 +191,16 @@ if ($accion == "Editar") {	// muestra datos para prestamo
 */
 	$elstatus=$_SESSION['elstatus'];
 	echo '<fieldset><legend>Información para Registro </legend>';
-	echo '<td>Seleccione Tipo</td>';
+	echo '<td>Seleccione Farmacia </td>';
    	echo '<td class="rojo">';
 	echo "<input type = 'hidden' value ='".$cedula."' name='cedula'>";
 	echo '<select name="farmacia" size="1">';
-	$sql="select * from instituto where tipo=3 and status=1 order by instituto";
+	$sql="select * from instituto where tipo=4 and status=1 order by instituto";
 	$resultado=mysql_query($sql);
 	while ($fila2 = mysql_fetch_assoc($resultado)) {
 		echo '<option value="'.$fila2['codmed'].'">'.$fila2['codmed'].' - '.$fila2['instituto'].'</option>'; }
 	echo '</select> *'; 
-	echo '</td>';
+	echo '</td><br>';
 	echo 'Fecha Factura';
 	$fecha=date("d")."/".date('m')."/".date("Y"); 
 	$hoy = date("d/m/Y");

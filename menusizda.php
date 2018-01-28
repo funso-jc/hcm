@@ -554,6 +554,15 @@
 			</li>
 		</ul>
 
+		<li><a href="">Instituciones</a>
+		<ul>
+			<li><a href="">Actualizar</a>
+				<ul>
+					<li><a href="regitems.php">Institutos</a></li>
+				</ul>
+			</li>
+		</ul>
+
 	</ul>
   </div>
 	<p>	

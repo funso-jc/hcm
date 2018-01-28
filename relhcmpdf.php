@@ -53,9 +53,10 @@ $header[3]='Beneficiario';
 $header[4]='Concepto';
 $header[5]='Institucion';
 $header[6]='Monto';
+$header[7]='Factura';
 $alto=3;
 $salto=$alto;
-$w=array(8,20,40,40,20,50,20); // ,25,25,25,25,25,25);
+$w=array(8,20,40,40,20,50,20,20); // ,25,25,25,25,25,25);
 $p[0]=20;
 for ($posicion=1;$posicion<count($w);$posicion++) 
 	$p[$posicion]=$p[$posicion-1]+$w[$posicion-1];
@@ -103,7 +104,7 @@ while ($rsocio = mysql_fetch_assoc($asocio)){
 	}
 	else 
 	{
-	if ($linea>=230) {
+	if ($linea>=160) {
 		$linea+=$alto;
 		$pdf->SetY($linea);
 		$pdf->SetX($p[0]);
@@ -141,7 +142,7 @@ while ($rsocio = mysql_fetch_assoc($asocio)){
 		$pdf->SetY($linea);
 		imprimir($p,$w,$alto,$rsocio,$pdf,$ttsocio,$ttucla,$tasocio,$taucla);
 	}
-	if ($linea>=250) {
+	if ($linea>=160) {
 		$linea+=$alto;
 		$pdf->SetY($linea);
 		$pdf->SetX($p[0]);
@@ -196,7 +197,7 @@ set_time_limit(30);
 
 ////////////////////////////////////////////////////
 function imprimir($p,$w,$alto,$rsocio,$pdf,&$ttsocio,&$ttucla,&$tasocio,&$taucla){
-if ($linea>=230) {
+if ($linea>=160) {
 	$linea+=$alto;
 	$pdf->SetY($linea);
 	$pdf->SetX($p[0]);
@@ -222,11 +223,14 @@ if ($rsocio['titular'] == 0) {
 }
 $pdf->SetX($p[4]);		$pdf->Cell($w[4],$alto,$rsocio["concepto"],0,0,'L');
 $ced2=$rsocio["codfar"];
-$sql2="select instituto from instituto where codmed ='$ced2' and tipo='4'";
+// $sql2="select instituto from instituto where codmed ='$ced2' "; // and tipo='4'";
+$sql2="select descripcion from clinicas where rif ='$ced2' "; // and tipo='4'";
+//echo $sql2;
 $a2=mysql_query($sql2);
 $rsocio2=mysql_fetch_assoc($a2);
-$pdf->SetX($p[5]);		$pdf->Cell($w[5],$alto,$rsocio2["instituto"],0,0,'L',0); 
+$pdf->SetX($p[5]);		$pdf->Cell($w[5],$alto,$rsocio2["descripcion"],0,0,'L',0); 
 $pdf->SetX($p[6]);		$pdf->Cell($w[6],$alto,number_format($rsocio["monto"],2,'.',','),0,0,'R');
+$pdf->SetX($p[7]);		$pdf->Cell($w[7],$alto,$rsocio["factura"],0,0,'R');
 $ttsocio+=$rsocio["monto"];
 // $ttucla+=$rsocio["ret_ucla"];
 $tasocio+=$rsocio["monto"];

@@ -28,7 +28,7 @@
 				// eg: SELECT yourColumnName FROM yourTable WHERE yourColumnName LIKE '$queryString%' LIMIT 10
 
 //				$niveles=$_SESSION['maxnivel'];
-				$filtro="SELECT cedulafam, ape_nomb FROM familiar WHERE ((cedulafam LIKE '$queryString%') or (ape_nomb LIKE '$queryString%')) and (cedula='$titular') order by ape_nomb LIMIT 10";
+				$filtro="SELECT cedulafam, ape_nomb FROM familiar WHERE ((cedulafam LIKE '%$queryString%') or (ape_nomb LIKE '%$queryString%')) and (cedula='$titular') order by ape_nomb LIMIT 10";
 				// 
 				$query = $db->query($filtro);
 // 				$query = $db->query("SELECT cue_codigo, cue_nombre FROM sgcaf810 WHERE ((cue_codigo LIKE '$queryString%') or (cue_nombre LIKE '$queryString%')) LIMIT 10");
